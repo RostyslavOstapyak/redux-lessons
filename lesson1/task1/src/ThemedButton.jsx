@@ -3,8 +3,6 @@ import { ThemeContext } from './themes-context';
 
 class ThemedButton extends React.PureComponent {
   render() {
-    console.log(this.context);
-
     return (
       <button
         {...this.props}
