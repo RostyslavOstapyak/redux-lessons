@@ -1,13 +1,12 @@
 export const ADD_ITEM = 'CART/ADD_ITEM';
 export const REMOVE_ITEM = 'CART/REMOVE_ITEM';
 
-export const addProduct = productData => ({
+export const addItem = itemData => ({
   type: ADD_ITEM,
-  productData,
+  itemData,
 });
 
-export const removeProduct = id => ({
+export const removeItem = itemId => ({
   type: REMOVE_ITEM,
-
-  id,
+  itemId,
 });

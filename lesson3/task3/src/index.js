@@ -1,6 +1,7 @@
-import { setUser, removeUser } from './user.actions.js';
+import { addItem, removeItem } from './cart.actions';
 import store from './store';
 
 store.subscribe(() => console.log(store.getState()));
 
-store.dispatch(setUser({ name: 'Bob' }));
+store.dispatch(addItem({ id: 1, title: 'fff' }));
+store.dispatch(removeItem(1));
