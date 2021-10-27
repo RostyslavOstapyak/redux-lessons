@@ -6,7 +6,7 @@ import { languageReducer } from './language.reducer';
 const appReducer = combineReducers({
   language: languageReducer,
   cart: cartReducer,
-  users: userReducer,
+  user: userReducer,
 });
 
 const store = createStore(

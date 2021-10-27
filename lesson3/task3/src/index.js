@@ -3,4 +3,4 @@ import store from './store';
 
 store.subscribe(() => console.log(store.getState()));
 
-store.dispatch(setUser('user'));
+store.dispatch(setUser({ name: 'Bob' }));
