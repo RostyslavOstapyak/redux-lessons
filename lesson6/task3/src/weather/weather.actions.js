@@ -1,4 +1,4 @@
-import { getCitiesData } from './weather.gateway.js';
+import { GetWeatherData } from './weather.gateway.js';
 
 export const CITIES_DATA_RECEIVED = 'CITIES_DATA_RECEIVED';
 
@@ -7,10 +7,10 @@ export const citiesDataReceived = citiesData => ({
   payload: { citiesData },
 });
 
-export const fetchCitiesData = () =>
+export const getWeatherData = () =>
   // eslint-disable-next-line func-names
   function (dispatch) {
-    getCitiesData().then(citiesData => {
+    GetWeatherData().then(citiesData => {
       dispatch(citiesDataReceived(citiesData));
     });
   };
