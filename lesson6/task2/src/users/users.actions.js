@@ -9,9 +9,8 @@ export const userDataReceived = userData => ({ type: USER_DATA_RECEIVED, payload
 
 export const fetchUserData = userName =>
   function (dispatch) {
+    dispatch(showSpinner());
     getUserData(userName).then(userData => {
-      dispatch(showSpinner());
-      console.log(userData);
       dispatch(userDataReceived(userData));
     });
   };
