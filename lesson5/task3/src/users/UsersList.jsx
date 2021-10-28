@@ -4,7 +4,7 @@ import User from './User';
 const UsersList = ({ users }) => (
   <ul className="users">
     {users.map(user => (
-      <User key={user.id} />
+      <User key={user.id} {...user} />
     ))}
   </ul>
 );
