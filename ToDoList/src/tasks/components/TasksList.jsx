@@ -1,24 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Task from './Task.jsx';
 import CreateTaskInput from './CreateTaskInput.jsx';
 import { createTask, fetchTasksList, updateTask, deleteTask } from '../tasksGateway.jsx';
+import * as tasksActions from '../tasks.actions';
+import { tasksListSelector } from '../tasks.selectors';
 
 class TasksList extends React.Component {
-  state = {
-    tasks: [],
-  };
-
   componentDidMount() {
-    this.fetchTasks();
+    this.props.getTaskList();
   }
-
-  fetchTasks = () => {
-    fetchTasksList().then(tasksList => {
-      this.setState({
-        tasks: tasksList,
-      });
-    });
-  };
 
   onCreate = text => {
     const newTask = {
@@ -43,7 +35,7 @@ class TasksList extends React.Component {
   };
 
   render() {
-    const sortedList = this.state.tasks.slice().sort((a, b) => a.done - b.done);
+    const sortedList = this.props.tasks.slice().sort((a, b) => a.done - b.done);
 
     return (
       <main className="todo-list">
@@ -63,4 +55,17 @@ class TasksList extends React.Component {
   }
 }
 
-export default TasksList;
+TasksList.propTypes = {
+  getTaskList: PropTypes.func.isRequired,
+  tasks: PropTypes.arrayOf(PropTypes.shape()),
+};
+
+const mapDispatch = {
+  getTaskList: tasksActions.getTaskList,
+};
+
+const mapState = state => ({
+  tasks: tasksListSelector(state),
+});
+
+export default connect(mapState, mapDispatch)(TasksList);
